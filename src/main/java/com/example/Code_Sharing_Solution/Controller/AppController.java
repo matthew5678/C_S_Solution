@@ -4,7 +4,10 @@ import com.example.Code_Sharing_Solution.Entities.Code;
 import com.example.Code_Sharing_Solution.Entities.Code_For_Display;
 import com.example.Code_Sharing_Solution.Repository.CodeRepository;
 import com.example.Code_Sharing_Solution.Repository.CodeRepositoryStringID;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.logging.LoggingApplicationListener;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -60,9 +63,8 @@ public class AppController {
             "  </body>\n" +
             "</html>";
 
-    //    GET /code/new should contain two elements on top of the others:
-//            1. <input id="time_restriction" type="text"/> should contain the time restriction.
-//2. <input id="views_restriction" type="text"/> should contain the views restriction
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(LoggingApplicationListener.class);
     private String HTML_TEXT_NEW ="<!DOCTYPE html>" +
             "            <html>" +
             "             <head> +" +
@@ -111,11 +113,10 @@ public class AppController {
 
 
 
-    /////////////////////////////////// SECOND DONE,  FINAL DONE
-    //GET /api/code/1
     @GetMapping("/api/code/{id}")
     public ResponseEntity<Code_For_Display> getCode3(@PathVariable String id)
     {
+        LOGGER.info("Spring boot Get Mapping : /api/code/{id}");
         Optional<Code> getCode = codeRepositoryStringID.findById(id);
         if(getCode.isPresent())
         {
@@ -172,10 +173,11 @@ public class AppController {
     }
 
 
-    /////////////////////////////////// FIRST DONE, FINAL DONE
+
     @PostMapping("/api/code/new")
     public ResponseEntity<Id_Response> post1(@RequestBody CodeData codeData)
     {
+        LOGGER.info("Spring boot Post Mapping : /api/code/new");
         var identification_no = UUID.randomUUID();
         Code code = new Code();
         code.setId(String.valueOf(identification_no));
