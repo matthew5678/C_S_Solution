@@ -231,7 +231,7 @@ public class AppController {
 
 
         Code_For_Display code_for_display = new Code_For_Display();
-        //Logger logger = (Logger) LoggerFactory.getLogger(RestController.class);
+
 
         if(getCODE.isPresent()) {
             var codeVal = getCODE.get();
@@ -378,7 +378,7 @@ public class AppController {
 
 
 
-    /////////////////////////////////// THIRD DONE FINAL DONE
+
     @GetMapping("/api/code/latest")
     public ResponseEntity<Code_For_Display[]> getCode4(){
 
@@ -420,12 +420,7 @@ public class AppController {
 //                .filter(x -> !x.isViewsAvailable() && !x.isTimeAvailable())
                 .toArray(Code[]::new);
 
-//        var arrayValue3 = Arrays.stream(arrayValue2).map(x ->{
-//            Code_For_Display code_for_display = new Code_For_Display();
-//            code_for_display.setCode(x.getCode());
-//            code_for_display.setDate(LocalDateTime.parse(x.getDate()));
-//            return code_for_display;
-//       }).toArray(Code_For_Display[]::new);
+
         var getIterator =  Arrays.stream(arrayValue2).iterator();
         Code_For_Display[] arrayValue4 = new Code_For_Display[arrayValue2.length];
 
@@ -449,7 +444,7 @@ public class AppController {
 
     }
 
-    /////////////////////////////////// FOURTH DONE FINAL Doing
+
     @GetMapping(value = "/code/latest", produces = MediaType.TEXT_HTML_VALUE)
     public ResponseEntity<String> getCode5(){
 
@@ -529,7 +524,7 @@ public class AppController {
 
 
 
-    //@GetMapping("/api/code/new") may need modification
+
     @GetMapping(value = "/code/new", produces = MediaType.TEXT_HTML_VALUE)
     @ResponseBody
     public ResponseEntity<String> getCode3(){
